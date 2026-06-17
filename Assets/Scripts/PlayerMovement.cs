@@ -7,12 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -20f;
     public float jumpHeight = 1.5f;
 
-    public Transform cameraPivot;
-    public float cameraSensitivity = 120f;
-
     private CharacterController controller;
     private Vector3 velocity;
-    private float cameraPitch = 20f;
 
     void Start()
     {
@@ -21,24 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleCamera();
         MovePlayer();
-    }
-
-    void HandleCamera()
-    {
-        if (Input.GetMouseButton(1))
-        {
-            float mouseX = Input.GetAxis("Mouse X");
-            float mouseY = Input.GetAxis("Mouse Y");
-
-            transform.Rotate(Vector3.up * mouseX * cameraSensitivity * Time.deltaTime);
-
-            cameraPitch -= mouseY * cameraSensitivity * Time.deltaTime;
-            cameraPitch = Mathf.Clamp(cameraPitch, -30f, 60f);
-
-            cameraPivot.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
-        }
     }
 
     void MovePlayer()
