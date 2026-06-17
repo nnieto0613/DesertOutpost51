@@ -4,11 +4,14 @@ public class PlayerPickup : MonoBehaviour
 {
     public Transform holdPoint;
     public float pickupRange = 3f;
+    public GameObject pickupPrompt;
 
     private PickupItem heldItem;
 
     void Update()
     {
+        UpdatePickupPrompt();
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (heldItem == null)
@@ -20,6 +23,31 @@ public class PlayerPickup : MonoBehaviour
                 DropItem();
             }
         }
+    }
+
+    void UpdatePickupPrompt()
+    {
+        if (pickupPrompt == null)
+        {
+            return;
+        }
+
+        bool nearItem = false;
+
+        PickupItem[] items = FindObjectsOfType<PickupItem>();
+
+        foreach (PickupItem item in items)
+        {
+            float distance = Vector3.Distance(transform.position, item.transform.position);
+
+            if (distance <= pickupRange)
+            {
+                nearItem = true;
+                break;
+            }
+        }
+
+        pickupPrompt.SetActive(nearItem && heldItem == null);
     }
 
     void TryPickUpItem()
@@ -81,6 +109,7 @@ public class PlayerPickup : MonoBehaviour
         }
 
         heldItem = null;
+
         Debug.Log("Dropped item");
     }
 
