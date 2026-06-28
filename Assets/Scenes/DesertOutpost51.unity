@@ -20611,6 +20611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1635426445}
   - component: {fileID: 1635426444}
+  - component: {fileID: 1635426446}
   m_Layer: 0
   m_Name: CutsceneManager
   m_TagString: Untagged
@@ -20629,7 +20630,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 88895226966bdbd4bbc27b68bfed93f6, type: 2}
   m_InitialState: 1
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -20664,6 +20665,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635426446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635426443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5bd35af55e28b41868ea8f953918e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  director: {fileID: 1635426444}
+  playerCamera: {fileID: 2062419762}
+  playerMovement: {fileID: 1349345886}
 --- !u!1 &1642188154
 GameObject:
   m_ObjectHideFlags: 0
