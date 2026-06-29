@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private Vector3 velocity;
+    private Animator animator;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -31,6 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (animator != null)
+        {
+            animator.SetFloat("speed", Mathf.Abs(vertical));
+        }
 
         transform.Rotate(0f, horizontal * turnSpeed * Time.deltaTime, 0f);
 
