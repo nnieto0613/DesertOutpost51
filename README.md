@@ -164,9 +164,11 @@ The following Unity/game development topics from the course were implemented:
 - Implemented countdown timer
 - Created Game Over screen
 - Added restart functionality
-- Added wind ambience
+- Added/Created wind ambience
 - Painted terrain
 - Added desert sand textures
+- Added Meshes/Textures to Interactive Game Objects
+
 
 ---
 

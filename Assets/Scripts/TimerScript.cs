@@ -1,16 +1,19 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement; // Required for reloading the scene!
+using UnityEngine.SceneManagement; 
 
 public class TimerScript : MonoBehaviour 
 {
     [Header("Timer Settings")]
-    public float timeRemaining = 300f; 
+    public float timeRemaining = 299f; 
     public bool timerIsRunning = false;
+    
+    // NEW: A secret toggle to pause the timer until movement happens
+    private bool waitingForFirstMove = false; 
     
     [Header("UI References")]
     public TextMeshProUGUI timeText;
-    public GameObject gameOverPanel; // New slot for our UI screen
+    public GameObject gameOverPanel; 
 
     private void Start()
     {
@@ -19,6 +22,22 @@ public class TimerScript : MonoBehaviour
 
     private void Update()
     {
+        // Check for Movement before timer starts
+        if (waitingForFirstMove)
+        {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+
+            if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
+            {
+                waitingForFirstMove = false; 
+                timerIsRunning = true;       // Start the clock
+                Debug.Log("Player moved! Timer officially ticking.");
+            }
+        }
+
+        // timer countdown logic
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
@@ -38,8 +57,9 @@ public class TimerScript : MonoBehaviour
 
     public void StartCountdown()
     {
-        timerIsRunning = true;
-        Debug.Log("Cutscene ended. Timer Started!");
+        // Turn on the waiting toggle
+        waitingForFirstMove = true;
+        Debug.Log("Cutscene ended. Waiting for player to move...");
     }
 
     private void UpdateTimerDisplay(float timeToDisplay)
@@ -57,30 +77,20 @@ public class TimerScript : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        // 1. Show the Game Over Screen
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
         }
         
-        // 2. Unlock the mouse so the player can click the restart button
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // 3. Pause the game (stops physics and movement)
         Time.timeScale = 0f;
     }
 
-    // The Button will trigger this method
     public void RestartGame()
     {
-        // Unpause the game before we reload
         Time.timeScale = 1f;
-        
-        // Save a secret flag telling the game to skip the cutscene on the next load
         PlayerPrefs.SetInt("SkipCutscene", 1);
-        
-        // Reload the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
