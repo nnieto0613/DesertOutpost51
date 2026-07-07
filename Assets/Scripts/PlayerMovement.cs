@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float turnSpeed = 80f;
     public float gravity = -20f;
     public float jumpHeight = 1.5f;
+    public AudioSource audioSource;
 
     private CharacterController controller;
     private Vector3 velocity;
