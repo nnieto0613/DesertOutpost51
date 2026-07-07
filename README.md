@@ -112,7 +112,7 @@ The following Unity/game development topics from the course were implemented:
 ### Lose Conditions
 
 - Timer reaches zero.
-- Player is destroyed by enemy drones.
+- Player is slowed down to a speed of 0 by enemy drones sleeper bullets.
 
 ---
 
@@ -152,7 +152,24 @@ The following Unity/game development topics from the course were implemented:
 
 ## Joshua Page (Mudkip993)
 
-- Updated FireBlock prefab
+- Created Fire particle system
+- Created sandstorm particle system
+- Created Player Character walking dirt particle system
+- Created Drone Trail particle systems
+- Created drone bullet particle systems
+- Created power generator spark particle effect
+- Created wall sentries
+- Create bullet prefab and movement mechanics
+- Added sounds to drones and key objects 
+- Added sounds to fire
+- Modified sounds to fit purposes needed in game
+- Increased size of terrain and created hills and valleys for expanded area
+- Added player bounds to keep player inside play area
+- Added walls around gate so that player was forced to progress level sequentially
+- Fixed collisions on many objects
+- Modified placement of key objects and interactions
+- Added prefab models to the world including two structures, junk items in distance, and power poles
+- 
 - Added particle effects
 - Improved environmental visual effects
 - Continued particle system improvements
