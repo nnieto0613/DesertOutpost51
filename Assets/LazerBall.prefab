@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7967141815926317490}
   - component: {fileID: 5706093199418902578}
   - component: {fileID: -7371597898410009750}
+  - component: {fileID: -6720454005963163872}
   m_Layer: 0
   m_Name: LazerBall
   m_TagString: Untagged
@@ -143,3 +144,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSound: {fileID: 0}
+--- !u!114 &-6720454005963163872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4011349115473334602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93edf0b994f54b4c9c02901c98b3141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

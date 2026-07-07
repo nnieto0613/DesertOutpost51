@@ -1,19 +1,20 @@
 using UnityEngine;
-using UnityEngine.Playables; // We need this to talk to the Timeline!
+using UnityEngine.Playables;
 
 public class CutsceneTrigger : MonoBehaviour
 {
     [Header("Connections")]
     public PlayableDirector cutsceneDirector;
-    public TimerScript gameTimer;
+    public TimerScript gameTimer; // Ensure this matches your renamed TimerScript!
 
+    // A lock so we don't accidentally trigger the timer a hundred times a second
+    private bool hasTriggered = false; 
 
     void Start()
     {
         // Check if we just hit the restart button
         if (PlayerPrefs.GetInt("SkipCutscene", 0) == 1)
         {
-            // Reset the flag so it plays normally the next time you open the game fresh
             PlayerPrefs.SetInt("SkipCutscene", 0);
             
             // Fast-forward and stop the cutscene immediately
@@ -23,38 +24,25 @@ public class CutsceneTrigger : MonoBehaviour
                 cutsceneDirector.Evaluate();
                 cutsceneDirector.Stop(); 
             }
-            
-            // The timer will auto-start because stopping the director fires the OnCutsceneEnded event!
         }
     }
 
-
-
-    void OnEnable()
+    void Update()
     {
-        // This tells Unity to "listen" for the exact moment the cutscene stops
-        if (cutsceneDirector != null)
+        // Actively monitor the cutscene every single frame
+        if (cutsceneDirector != null && !hasTriggered)
         {
-            cutsceneDirector.stopped += OnCutsceneEnded;
-        }
-    }
-
-    void OnDisable()
-    {
-        // Safety cleanup so Unity doesn't get confused if the scene restarts
-        if (cutsceneDirector != null)
-        {
-            cutsceneDirector.stopped -= OnCutsceneEnded;
-        }
-    }
-
-    // This runs automatically the moment the Playable Director stops playing
-    void OnCutsceneEnded(PlayableDirector pd)
-    {
-        if (gameTimer != null)
-        {
-            gameTimer.StartCountdown();
-            Debug.Log("Cutscene finished or skipped! Timer started.");
+            // If the cutscene is no longer playing, OR its current time has reached its maximum duration...
+            if (cutsceneDirector.state != PlayState.Playing || cutsceneDirector.time >= cutsceneDirector.duration)
+            {
+                hasTriggered = true; // Lock the trigger so it only fires once
+                
+                if (gameTimer != null)
+                {
+                    gameTimer.StartCountdown();
+                    Debug.Log("Cutscene has ended naturally or was skipped. Waiting for player movement!");
+                }
+            }
         }
     }
 }
