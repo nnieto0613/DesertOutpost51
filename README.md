@@ -118,7 +118,7 @@ The following Unity/game development topics from the course were implemented:
 
 # Team Contributions
 
-## Trevour Guild
+
 
 ### Programming
 
@@ -150,6 +150,15 @@ The following Unity/game development topics from the course were implemented:
 
 ---
 
+## Trevour Guild
+- Created the layout for the game
+- Helped create the terrain and added buildings
+- Added Player Skin, and helped model it
+- Added logic for the keycard
+- Added the gate raising mechanic
+- Added several fx to the game
+
+
 ## Joshua Page (Mudkip993)
 
 - Created Fire particle system
@@ -169,7 +178,6 @@ The following Unity/game development topics from the course were implemented:
 - Fixed collisions on many objects
 - Modified placement of key objects and interactions
 - Added prefab models to the world including two structures, junk items in distance, and power poles
-- 
 - Added particle effects
 - Improved environmental visual effects
 - Continued particle system improvements
@@ -185,6 +193,10 @@ The following Unity/game development topics from the course were implemented:
 - Painted terrain
 - Added desert sand textures
 - Added Meshes/Textures to Interactive Game Objects
+- Added Health bars / Player Health logic
+- Fixed Drones to shoot aimed at player
+- Added damage logic so that player loses a health bar when hit by drone
+
 
 
 ---
