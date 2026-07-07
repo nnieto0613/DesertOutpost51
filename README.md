@@ -120,7 +120,7 @@ The following Unity/game development topics from the course were implemented:
 
 
 
-### Programming
+### Trevour Soldner Guild
 
 - Implemented player movement
 - Implemented drone AI patrol system
@@ -140,23 +140,6 @@ The following Unity/game development topics from the course were implemented:
 - Merged terrain with gameplay systems
 - Integrated drone models
 - Added gameplay polish
-
-### Level Design
-
-- Designed overall game layout
-- Terrain sculpting
-- Building placement
-- Environmental setup
-
----
-
-## Trevour Guild
-- Created the layout for the game
-- Helped create the terrain and added buildings
-- Added Player Skin, and helped model it
-- Added logic for the keycard
-- Added the gate raising mechanic
-- Added several fx to the game
 
 
 ## Joshua Page (Mudkip993)
